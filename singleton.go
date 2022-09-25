@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"sync"
+	"time"
 )
 
 var lock = &sync.Mutex{}
@@ -30,8 +31,10 @@ func getInstance() *single {
 
 func main() {
 
-	getInstance()
-	getInstance()
-	getInstance()
+	go getInstance()
+	go getInstance()
+	go getInstance()
+
+	time.Sleep(time.Second * 2)
 
 }
